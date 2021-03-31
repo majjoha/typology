@@ -6,6 +6,7 @@ import type {
   Equals,
   LessThan,
   LessThanOrEqual,
+  GreaterThan,
   Not,
   And,
   Or,
@@ -131,6 +132,36 @@ describe("LessThanOrEqual", () => {
     const truthy: True = true
 
     expect(result).toEqual(truthy)
+  })
+})
+
+describe("GreaterThan", () => {
+  it("returns `True` if the first number is larger than the second", () => {
+    const result: GreaterThan<Six, Four> = true
+    const truthy: True = true
+
+    expect(result).toEqual(truthy)
+  })
+
+  it("returns `False` if the two numbers are equal", () => {
+    const result: GreaterThan<Six, Six> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
+  })
+
+  it("returns `False` if both numbers are `Zero`", () => {
+    const result: GreaterThan<Zero, Zero> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
+  })
+
+  it("returns `False` if the first number is smaller than the second", () => {
+    const result: GreaterThan<Four, Six> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
   })
 })
 
