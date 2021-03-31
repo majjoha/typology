@@ -44,3 +44,5 @@ export type LessThan<A, B> = A extends Succ<infer A1>
   : B extends Succ<infer B1>
   ? True
   : False
+
+export type LessThanOrEqual<A, B> = Equals<A, B> | LessThan<A, B>
