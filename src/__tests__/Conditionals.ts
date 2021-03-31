@@ -1,6 +1,15 @@
-import type { Zero, Succ } from "../Nat"
+import type { Zero, Succ, Two, Three, Four, Six } from "../Nat"
 import type { True, False } from "../Bool"
-import type { IsZero, IfElse, Equals, Not, And, Or, Xor } from "../Conditionals"
+import type {
+  IsZero,
+  IfElse,
+  Equals,
+  LessThan,
+  Not,
+  And,
+  Or,
+  Xor,
+} from "../Conditionals"
 
 describe("IsZero", () => {
   it("returns `True` if the given value is `Zero`", () => {
@@ -61,6 +70,36 @@ describe("Equals", () => {
     const falsey: False = false
 
     expect(result).toEqual(falsey)
+  })
+})
+
+describe("LessThan", () => {
+  it("returns `False` if the first number is larger than the second", () => {
+    const result: LessThan<Six, Four> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
+  })
+
+  it("returns `False` if the two numbers are equal", () => {
+    const result: LessThan<Two, Two> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
+  })
+
+  it("returns `False` if both numbers are `Zero`", () => {
+    const result: LessThan<Zero, Zero> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
+  })
+
+  it("returns `True` if the first number is smaller than the second", () => {
+    const result: LessThan<Two, Three> = true
+    const truthy: True = true
+
+    expect(result).toEqual(truthy)
   })
 })
 

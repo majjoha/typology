@@ -36,3 +36,11 @@ export type Xor<T1 extends Bool, T2 extends Bool> = T1 extends True
   : T2 extends False
   ? False
   : True
+
+export type LessThan<A, B> = A extends Succ<infer A1>
+  ? B extends Succ<infer B1>
+    ? LessThan<A1, B1>
+    : False
+  : B extends Succ<infer B1>
+  ? True
+  : False
