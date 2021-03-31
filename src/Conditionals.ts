@@ -52,3 +52,5 @@ export type GreaterThan<A, B> = A extends Succ<infer A1>
     ? GreaterThan<A1, B1>
     : True
   : False
+
+export type GreaterThanOrEqual<A, B> = Equals<A, B> | GreaterThan<A, B>
