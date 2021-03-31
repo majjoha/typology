@@ -28,3 +28,11 @@ export type Or<T1 extends Bool, T2 extends Bool> = T1 extends True
   : T2 extends True
   ? True
   : False
+
+export type Xor<T1 extends Bool, T2 extends Bool> = T1 extends True
+  ? T2 extends False
+    ? True
+    : False
+  : T2 extends False
+  ? False
+  : True
