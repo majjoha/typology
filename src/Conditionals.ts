@@ -1,5 +1,5 @@
 import type { Zero, Succ } from "./Nat"
-import type { True, False } from "./Bool"
+import type { Bool, True, False } from "./Bool"
 
 export type IsZero<N> = N extends Zero ? True : False
 
@@ -14,3 +14,5 @@ export type Equals<A, B> = A extends Succ<infer SA>
     ? True
     : False
   : False
+
+export type Not<T extends Bool> = T extends True ? False : True

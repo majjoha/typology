@@ -1,6 +1,6 @@
 import type { Zero, Succ } from "../Nat"
 import type { True, False } from "../Bool"
-import type { IsZero, IfElse, Equals } from "../Conditionals"
+import type { IsZero, IfElse, Equals, Not } from "../Conditionals"
 
 describe("IsZero", () => {
   it("returns `True` if the given value is `Zero`", () => {
@@ -61,5 +61,21 @@ describe("Equals", () => {
     const falsey: False = false
 
     expect(result).toEqual(falsey)
+  })
+})
+
+describe("Not", () => {
+  it("returns `False` if input is `True`", () => {
+    const result: Not<True> = false
+    const falsey: False = false
+
+    expect(result).toEqual(falsey)
+  })
+
+  it("returns `True` if input is `False`", () => {
+    const result: Not<False> = true
+    const truthy: True = true
+
+    expect(result).toEqual(truthy)
   })
 })
