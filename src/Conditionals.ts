@@ -22,3 +22,9 @@ export type And<T1 extends Bool, T2 extends Bool> = T1 extends True
     ? True
     : False
   : False
+
+export type Or<T1 extends Bool, T2 extends Bool> = T1 extends True
+  ? True
+  : T2 extends True
+  ? True
+  : False
