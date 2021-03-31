@@ -1,5 +1,6 @@
-import type { Succ, Zero } from "../Nat"
-import type { Increment, Decrement, Add } from "../Arithmetic"
+import { ten } from "../Nat"
+import type { Succ, Zero, Two, Three, Four, Ten } from "../Nat"
+import type { Increment, Decrement, Add, Multiply } from "../Arithmetic"
 
 describe("Increment", () => {
   it("increments a number", () => {
@@ -87,5 +88,52 @@ describe("Add", () => {
     }
 
     expect(result).toStrictEqual(two)
+  })
+})
+
+describe("Multiply", () => {
+  it("returns `Zero` when the first number is `Zero`", () => {
+    const result: Multiply<Zero, Two> = "zero"
+    const zero: Zero = "zero"
+
+    expect(result).toBe(zero)
+  })
+
+  it("returns `Zero` when the second number is `Zero`", () => {
+    const result: Multiply<Three, Zero> = "zero"
+    const zero: Zero = "zero"
+
+    expect(result).toBe(zero)
+  })
+
+  it("multiplies two numbers", () => {
+    const result: Multiply<Four, Three> = { n: { n: { ...ten } } }
+    const twelve: Succ<Succ<Ten>> = {
+      n: {
+        n: {
+          n: {
+            n: {
+              n: {
+                n: {
+                  n: {
+                    n: {
+                      n: {
+                        n: {
+                          n: {
+                            n: "zero",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }
+
+    expect(result).toStrictEqual(twelve)
   })
 })

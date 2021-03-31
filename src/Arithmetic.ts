@@ -9,3 +9,8 @@ export type Add<A, B> = {
   acc: B
   n: A extends Succ<infer _> ? Add<Decrement<A>, Succ<B>> : never
 }[IfElse<IsZero<A>, "acc", "n">]
+
+export type Multiply<A, B> = {
+  0: Zero
+  n: A extends Succ<infer A1> ? Add<B, Multiply<A1, B>> : never
+}[IfElse<IsZero<A>, 0, "n">]
