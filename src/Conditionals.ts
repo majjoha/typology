@@ -16,3 +16,9 @@ export type Equals<A, B> = A extends Succ<infer SA>
   : False
 
 export type Not<T extends Bool> = T extends True ? False : True
+
+export type And<T1 extends Bool, T2 extends Bool> = T1 extends True
+  ? T2 extends True
+    ? True
+    : False
+  : False
