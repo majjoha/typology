@@ -1,6 +1,12 @@
 import { ten } from "../Nat"
-import type { Succ, Zero, Two, Three, Four, Ten } from "../Nat"
-import type { Increment, Decrement, Add, Multiply } from "../Arithmetic"
+import type { Zero, Succ, One, Two, Three, Four, Five, Ten } from "../Nat"
+import type {
+  Increment,
+  Decrement,
+  Add,
+  Multiply,
+  Subtract,
+} from "../Arithmetic"
 
 describe("Increment", () => {
   it("increments a number", () => {
@@ -135,5 +141,28 @@ describe("Multiply", () => {
     }
 
     expect(result).toStrictEqual(twelve)
+  })
+})
+
+describe("Subtract", () => {
+  it("returns `Zero` when `Zero` is subtracted from `Zero`", () => {
+    const result: Subtract<Zero, Zero> = "zero"
+    const zero: Zero = "zero"
+
+    expect(result).toEqual(zero)
+  })
+
+  it("returns `One` when subtracting 3 from 4", () => {
+    const result: Subtract<Four, Three> = { n: "zero" }
+    const one: { n: "zero" } = { n: "zero" }
+
+    expect(result).toStrictEqual(one)
+  })
+
+  it("does not return values below `Zero`", () => {
+    const result: Subtract<One, Five> = "zero"
+    const zero: Zero = "zero"
+
+    expect(result).toEqual(zero)
   })
 })

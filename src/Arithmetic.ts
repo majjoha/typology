@@ -14,3 +14,8 @@ export type Multiply<A, B> = {
   0: Zero
   n: A extends Succ<infer A1> ? Add<B, Multiply<A1, B>> : never
 }[IfElse<IsZero<A>, 0, "n">]
+
+export type Subtract<A, B> = {
+  acc: A
+  n: A extends Succ<infer A1> ? Subtract<A1, Decrement<B>> : Zero
+}[IfElse<IsZero<B>, "acc", "n">]
