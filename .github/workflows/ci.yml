@@ -14,5 +14,7 @@ jobs:
           node-version: '14'
       - name: Install dependencies
         run: npm install
+      - name: Run type check
+        run: tsc --noEmit
       - name: Run tests
         run: npm test
