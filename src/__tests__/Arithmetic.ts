@@ -1,11 +1,12 @@
-import { ten } from "../Nat"
-import type { Zero, Succ, One, Two, Three, Four, Five, Ten } from "../Nat"
+import { five, ten } from "../Nat"
+import type { NaN, Zero, Succ, One, Two, Three, Four, Five, Ten } from "../Nat"
 import type {
   Increment,
   Decrement,
   Add,
   Multiply,
   Subtract,
+  Divide,
 } from "../Arithmetic"
 
 describe("Increment", () => {
@@ -164,5 +165,35 @@ describe("Subtract", () => {
     const zero: Zero = "zero"
 
     expect(result).toEqual(zero)
+  })
+})
+
+describe("Divide", () => {
+  it("returns two when dividing ten with five", () => {
+    const result: Divide<Ten, Five> = { n: { n: "zero" } }
+    const two: Two = { n: { n: "zero" } }
+
+    expect(result).toEqual(two)
+  })
+
+  it("returns five when dividing five with one", () => {
+    const result: Divide<Five, One> = { n: { n: { n: { n: { n: "zero" } } } } }
+    const five: Five = { n: { n: { n: { n: { n: "zero" } } } } }
+
+    expect(result).toEqual(five)
+  })
+
+  it("returns `NaN` when dividing zero with zero", () => {
+    const result: Divide<Zero, Zero> = "NaN"
+    const nan: NaN = "NaN"
+
+    expect(result).toEqual(nan)
+  })
+
+  it("returns one when dividing five with three", () => {
+    const result: Divide<Five, Three> = { n: "zero" }
+    const one: One = { n: "zero" }
+
+    expect(result).toEqual(one)
   })
 })

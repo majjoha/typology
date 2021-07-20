@@ -1,5 +1,5 @@
-import type { Zero, Succ } from "./Nat"
-import type { IfElse, IsZero } from "./Conditionals"
+import type { NaN, Zero, Succ, One } from "./Nat"
+import type { IfElse, IsZero, LessThan } from "./Conditionals"
 
 export type Increment<N> = Succ<N>
 
@@ -19,3 +19,8 @@ export type Subtract<A, B> = {
   acc: A
   n: A extends Succ<infer A1> ? Subtract<A1, Decrement<B>> : Zero
 }[IfElse<IsZero<B>, "acc", "n">]
+
+export type Divide<A, B, N = Zero> = {
+  acc: N
+  n: A extends Succ<infer _> ? Divide<Subtract<A, B>, B, Add<N, One>> : NaN
+}[IfElse<LessThan<A, B>, "acc", "n">]

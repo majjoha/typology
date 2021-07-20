@@ -13,6 +13,8 @@ export type Eight = Succ<Seven>
 export type Nine = Succ<Eight>
 export type Ten = Succ<Nine>
 
+export type NaN = "NaN"
+
 export const zero: Zero = "zero"
 export const one: One = { n: zero }
 export const two: Two = { n: { ...one } }
