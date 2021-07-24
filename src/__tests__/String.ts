@@ -1,5 +1,5 @@
-import type { Join, Length } from "../String"
-import type { Zero } from "../Nat"
+import type { Join, Length, Repeat } from "../String"
+import type { Zero, Succ } from "../Nat"
 
 describe("Join", () => {
   it("joins two strings", () => {
@@ -39,5 +39,35 @@ describe("Length", () => {
     }
 
     expect(result).toEqual(four)
+  })
+})
+
+describe("Repeat", () => {
+  it("returns an empty string when repeated zero times", () => {
+    const result: Repeat<"", Zero> = ""
+    const empty: "" = ""
+
+    expect(result).toEqual(empty)
+  })
+
+  it("returns an empty string when repeated twice", () => {
+    const result: Repeat<"", Succ<Succ<Zero>>> = ""
+    const empty: "" = ""
+
+    expect(result).toEqual(empty)
+  })
+
+  it("returns `foo` when repeated zero times", () => {
+    const result: Repeat<"foo", Zero> = "foo"
+    const foo: "foo" = "foo"
+
+    expect(result).toEqual("foo")
+  })
+
+  it("returns `foofoofoo` when repeated twice", () => {
+    const result: Repeat<"foo", Succ<Succ<Zero>>> = "foofoofoo"
+    const foofoofoo: "foofoofoo" = "foofoofoo"
+
+    expect(result).toEqual("foofoofoo")
   })
 })
