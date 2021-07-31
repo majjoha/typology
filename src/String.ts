@@ -22,3 +22,9 @@ export type CharAt<S extends string, N> = {
       : CharAt<S, N1>
     : never
 }[IfElse<Equals<N, Zero>, "acc", "n">]
+
+export type Strip<S extends string> = S extends ` ${infer S1}`
+  ? Strip<S1>
+  : S extends `${infer S1} `
+  ? Strip<S1>
+  : S

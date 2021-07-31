@@ -1,4 +1,4 @@
-import type { Join, Length, Repeat, CharAt } from "../String"
+import type { Join, Length, Repeat, CharAt, Strip } from "../String"
 import type { Zero, Succ } from "../Nat"
 
 describe("Join", () => {
@@ -106,5 +106,28 @@ describe("CharAt", () => {
     const o: "o" = "o"
 
     expect(result).toEqual(o)
+  })
+})
+
+describe("Strip", () => {
+  it("removes any whitespace in the beginning of a string", () => {
+    const result: Strip<"     hello"> = "hello"
+    const hello: "hello" = "hello"
+
+    expect(result).toEqual(hello)
+  })
+
+  it("removes any whitespace at the end of a string", () => {
+    const result: Strip<"world   "> = "world"
+    const world: "world" = "world"
+
+    expect(result).toEqual(world)
+  })
+
+  it("removes any whitespace on both sides of a string", () => {
+    const result: Strip<"   hello world   "> = "hello world"
+    const helloWorld: "hello world" = "hello world"
+
+    expect(result).toEqual(helloWorld)
   })
 })
