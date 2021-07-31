@@ -24,3 +24,5 @@ export type Divide<A, B, N = Zero> = {
   acc: N
   n: A extends Succ<infer _> ? Divide<Subtract<A, B>, B, Add<N, One>> : NaN
 }[IfElse<LessThan<A, B>, "acc", "n">]
+
+export type Modulo<A, B> = Subtract<A, Multiply<B, Divide<A, B>>>

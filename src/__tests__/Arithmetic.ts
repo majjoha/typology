@@ -7,6 +7,7 @@ import type {
   Multiply,
   Subtract,
   Divide,
+  Modulo,
 } from "../Arithmetic"
 
 describe("Increment", () => {
@@ -195,5 +196,23 @@ describe("Divide", () => {
     const one: One = { n: "zero" }
 
     expect(result).toEqual(one)
+  })
+})
+
+describe("Modulo", () => {
+  it("returns `Zero` when finding the remainder of one and one", () => {
+    const result: Modulo<Succ<Zero>, Succ<Zero>> = "zero"
+    const zero: "zero" = "zero"
+
+    expect(result).toEqual(zero)
+  })
+
+  it("returns two when finding the remainder of two and three", () => {
+    const result: Modulo<Succ<Succ<Zero>>, Succ<Succ<Succ<Zero>>>> = {
+      n: { n: "zero" },
+    }
+    const two: Succ<Succ<Zero>> = { n: { n: "zero" } }
+
+    expect(result).toEqual(two)
   })
 })
