@@ -28,3 +28,10 @@ export type Strip<S extends string> = S extends ` ${infer S1}`
   : S extends `${infer S1} `
   ? Strip<S1>
   : S
+
+export type Reverse<S extends string, A extends string = ""> = {
+  acc: A
+  n: S extends `${infer S1}${infer S2}`
+    ? Reverse<S2, `${S1}${A}`>
+    : Reverse<S, `${S}${A}`>
+}[S extends "" ? "acc" : "n"]

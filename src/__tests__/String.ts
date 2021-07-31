@@ -1,4 +1,4 @@
-import type { Join, Length, Repeat, CharAt, Strip } from "../String"
+import type { Join, Length, Repeat, CharAt, Strip, Reverse } from "../String"
 import type { Zero, Succ } from "../Nat"
 
 describe("Join", () => {
@@ -129,5 +129,21 @@ describe("Strip", () => {
     const helloWorld: "hello world" = "hello world"
 
     expect(result).toEqual(helloWorld)
+  })
+})
+
+describe("Reverse", () => {
+  it("returns an empty string when reversing an empty string", () => {
+    const result: Reverse<""> = ""
+    const empty: "" = ""
+
+    expect(result).toEqual(empty)
+  })
+
+  it("returns `olleh` when reversing the string `hello`", () => {
+    const result: Reverse<"hello"> = "olleh"
+    const olleh: "olleh" = "olleh"
+
+    expect(result).toEqual(olleh)
   })
 })
