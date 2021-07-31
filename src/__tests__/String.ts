@@ -1,4 +1,4 @@
-import type { Join, Length, Repeat } from "../String"
+import type { Join, Length, Repeat, CharAt } from "../String"
 import type { Zero, Succ } from "../Nat"
 
 describe("Join", () => {
@@ -69,5 +69,42 @@ describe("Repeat", () => {
     const foofoofoo: "foofoofoo" = "foofoofoo"
 
     expect(result).toEqual("foofoofoo")
+  })
+})
+
+describe("CharAt", () => {
+  it("returns an empty string when accessing the first element of an empty string", () => {
+    const result: CharAt<"", Zero> = ""
+    const empty: "" = ""
+
+    expect(result).toEqual(empty)
+  })
+
+  it("returns an empty string when accessing a non-existing element of an empty string", () => {
+    const result: CharAt<"", Succ<Succ<Zero>>> = ""
+    const empty: "" = ""
+
+    expect(result).toEqual(empty)
+  })
+
+  it("returns `o` when accessing the second element of `foo`", () => {
+    const result: CharAt<"foo", Succ<Zero>> = "o"
+    const o: "o" = "o"
+
+    expect(result).toEqual(o)
+  })
+
+  it("returns an empty string when accessing a non-existing element of `bar`", () => {
+    const result: CharAt<"bar", Succ<Succ<Succ<Succ<Zero>>>>> = ""
+    const empty: "" = ""
+
+    expect(result).toEqual(empty)
+  })
+
+  it("returns `o` when accessing the fourth element of `hello`", () => {
+    const result: CharAt<"hello", Succ<Succ<Succ<Succ<Zero>>>>> = "o"
+    const o: "o" = "o"
+
+    expect(result).toEqual(o)
   })
 })

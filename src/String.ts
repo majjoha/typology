@@ -1,5 +1,6 @@
 import { Zero, Succ } from "./Nat"
 import { Increment } from "./Arithmetic"
+import { IfElse, Equals } from "./Conditionals"
 
 export type Repeat<SI extends string, N = Zero, SJ extends string = SI> = {
   acc: SI
@@ -12,3 +13,12 @@ export type Length<S extends string, N = Zero> = {
   acc: N
   n: S extends `${infer S1}${infer S2}` ? Length<S2, Increment<N>> : N
 }[S extends "" ? "acc" : "n"]
+
+export type CharAt<S extends string, N> = {
+  acc: S extends `${infer S1}${infer S2}` ? S1 : S
+  n: N extends Succ<infer N1>
+    ? S extends `${infer S1}${infer S2}`
+      ? CharAt<S2, N1>
+      : CharAt<S, N1>
+    : never
+}[IfElse<Equals<N, Zero>, "acc", "n">]
